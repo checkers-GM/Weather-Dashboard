@@ -18,4 +18,17 @@ var pastCity = []
 
 // call information from weather API
 
+function getCurrentCity(city){
+    var queryURL = "api.openweathermap.org/data/2.5/weather?id=524901&appid=bf0ae420b2bc44b42bfb5137eb028baa"
+}
+
+
+// add city to local storage city array
+
+
+// function for search button click
+
+
+// start application
+
 
