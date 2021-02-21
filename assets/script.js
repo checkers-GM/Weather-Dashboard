@@ -17,10 +17,16 @@ var pastCity = [];
 function getCurrentCity(city) {
   var queryURL =
     "api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=" + apiKey;
+  // Ajax get call to api
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+    // Store the data inside of response object
+  }).then(function (response) {
+    console.log(response);
+    console.log(queryURL);
+  });
 }
-
-$.ajax;
-
 // add city to local storage city array
 
 // function for search button click
