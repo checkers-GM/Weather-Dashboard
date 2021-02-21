@@ -25,6 +25,7 @@ function getCurrentCity(city) {
   }).then(function (response) {
     console.log(response);
     console.log(queryURL);
+    $(".");
   });
 }
 // add city to local storage city array
