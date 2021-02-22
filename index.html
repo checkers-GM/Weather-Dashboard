@@ -16,16 +16,25 @@
     <div class="container navbar-header">
       <h1>Weather API Dashboard Application</h1>
     </div>
+
     <!-- Main container -->
     <div class="container">
-      <div class="col-4 float-left">
-        <nav class="navbar">
-          <h4>Search a City to Find its Weather</h4>
-          <form class="form-inline">
-            <input type="search" id="cityInput" placeholder="Search Here" />
-            <button type="cityButton" class="btn">Search</button>
-          </form>
-        </nav>
+      <div>
+        <div class="col-4 float-left">
+          <nav class="navbar">
+            <h4>Search a City to Find its Weather</h4>
+            <form class="form-inline">
+              <input type="search" id="cityInput" placeholder="Search Here" />
+              <button type="cityButton" class="btn">Search</button>
+            </form>
+          </nav>
+        </div>
+        <div class="col-8 float-right">
+          <div id="currentWeather"></div>
+          <div id="currentUV"></div>
+        </div>
+        <h3>Upcoming Weather Forecast</h3>
+        <div id="weatherForecast" class="row"></div>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
