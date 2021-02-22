@@ -12,8 +12,7 @@ var pastCity = [];
 
 // display previous searched locations from local storage
 
-// call information from weather API
-
+// call information from weather API with user input city
 function getCurrentCity(city) {
   var queryURL =
     "api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=" + apiKey;
@@ -26,7 +25,7 @@ function getCurrentCity(city) {
     console.log(response);
     console.log(queryURL);
     //remove any data inside html tag
-    $("#currentCity").empty();
+    $("#currentWeather").empty();
     // create variables with response data from ajax call
     var cityTempEl = $("<p>").text("Temperature:" + response.main.temp);
     var cityHumidityEl = $("<p>").text("Humidity:" + response.main.humidity);
@@ -34,10 +33,15 @@ function getCurrentCity(city) {
     //Create div to append variables to page
     var weatherDataDiv = $("<div>");
     weatherDataDiv.append(cityTempEl, cityHumidityEl, cityWindEl);
+    $("#currentWeather").html(weatherDataDiv);
   });
 }
 // add city to local storage city array
 
 // function for search button click
 
-// start application
+$("#cityButton").on("click", function (event) {
+  event.preventDefault();
+  var cityEntry = $("cityInput").val().trim();
+  getCurrentCity(cityEntry);
+});
