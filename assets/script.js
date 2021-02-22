@@ -25,7 +25,15 @@ function getCurrentCity(city) {
   }).then(function (response) {
     console.log(response);
     console.log(queryURL);
-    $(".");
+    //remove any data inside html tag
+    $("#currentCity").empty();
+    // create variables with response data from ajax call
+    var cityTempEl = $("<p>").text("Temperature:" + response.main.temp);
+    var cityHumidityEl = $("<p>").text("Humidity:" + response.main.humidity);
+    var cityWindEl = $("<p>").text("Wind:" + response.wind.speed);
+    //Create div to append variables to page
+    var weatherDataDiv = $("<div>");
+    weatherDataDiv.append(cityTempEl, cityHumidityEl, cityWindEl);
   });
 }
 // add city to local storage city array
