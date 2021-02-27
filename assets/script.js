@@ -5,11 +5,12 @@ $(document).ready(function () {
   var currentCity;
   var pastCity = [];
 
-  $("#cityButton").on("click", function (event) {
+  $("#city-button").on("click", function (event) {
+    console.log("I've been clicked.");
     event.preventDefault();
-    console.log("clicked");
-    var cityEntry = $("#city-input").val();
+    var cityEntry = $("#cityInput").val();
     console.log(cityEntry);
+    $("#cityInput").val("");
     getCurrentCity(cityEntry);
   });
 
@@ -24,8 +25,7 @@ $(document).ready(function () {
   // call information from weather API with user input city
   function getCurrentCity(city) {
     var queryURL =
-      "api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=" + apiKey;
-    console.log(queryURL);
+      "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
     // Ajax get call to api
     $.ajax({
       url: queryURL,
