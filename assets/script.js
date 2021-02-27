@@ -16,8 +16,6 @@ $(document).ready(function () {
 
   // write function to get current location from cities array
 
-  // write function to get longitude and latitude from weather api app
-
   // write function to handle errors
 
   // display previous searched locations from local storage
@@ -49,6 +47,28 @@ $(document).ready(function () {
       $("#currentWeather").html(weatherDataDiv);
     });
   }
+
+  // Use response data from object to get UV
+
+  var latitude = response.coord.lon;
+  var longitude = response.coord.lat;
+  var weatherQueryURL =
+    "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=" +
+    latitude +
+    "&lon=" +
+    longitude;
+
+  // create Ajax call with longitude and latitude data to get UV data
+
+  $.ajax({
+    url: weatherQueryURL,
+    method: "GET",
+  }).then(function (response) {
+    $("#currentUV").empty();
+    var UV = $("<p>").text("UV Index: " + response.value);
+    $("#currentUV").html(UV);
+  });
+
   // add city to local storage city array
 
   // function for search button click
