@@ -25,7 +25,10 @@ $(document).ready(function () {
   // call information from weather API with user input city
   function getCurrentCity(city) {
     var queryURL =
-      "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
+      "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=" +
+      city +
+      "&appid=" +
+      apiKey;
     // Ajax get call to api
     $.ajax({
       url: queryURL,
