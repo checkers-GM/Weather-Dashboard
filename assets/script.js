@@ -46,28 +46,60 @@ $(document).ready(function () {
       weatherDataDiv.append(cityTempEl, cityHumidityEl, cityWindEl);
       $("#currentWeather").html(weatherDataDiv);
     });
+
+    //  5 day forecast query URL for ajax call
+
+    var forecastQueryURL =
+      "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/forecast?q=" +
+      city +
+      "&appid=" +
+      apiKey;
+
+    //  5 day forecast ajax call
+    $.ajax({
+      url: forecastQueryURL,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+      console.log(forecastQueryURL);
+      var forecastResults = response.list;
+      console.log(response.list);
+      //empty the div that contains forecast data
+      $("#weatherForecast").empty();
+
+      for (var i = 0; i < forecastResults.length; i += 8) {
+        //create div
+        var forecastResultsDiv = $("<div>");
+        forecastResultsDiv.append(forecastResults);
+        $("weatherForecast").html(forecastResultsDiv);
+      }
+
+      //console.log(latitude);
+      var latitude = response.coord.lon;
+      console.log(rresponse.coord.lon);
+      var longitude = response.coord.lat;
+      var weatherQueryURL =
+        "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=" +
+        latitude +
+        "&lon=" +
+        longitude;
+
+      $.ajax({
+        url: weatherQueryURL,
+        method: "GET",
+      }).then(function (response) {
+        console.log(response);
+        $("#currentUV").empty();
+        var UV = $("<p>").text("UV Index: " + response.value);
+        console.log(UV);
+        $("#currentUV").html(UV);
+      });
+    });
   }
-
-  // Use response data from object to get UV
-
-  var latitude = response.coord.lon;
-  var longitude = response.coord.lat;
-  var weatherQueryURL =
-    "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=" +
-    latitude +
-    "&lon=" +
-    longitude;
 
   // create Ajax call with longitude and latitude data to get UV data
 
-  $.ajax({
-    url: weatherQueryURL,
-    method: "GET",
-  }).then(function (response) {
-    $("#currentUV").empty();
-    var UV = $("<p>").text("UV Index: " + response.value);
-    $("#currentUV").html(UV);
-  });
+  // Use response data from object to get UV
 
   // add city to local storage city array
 
