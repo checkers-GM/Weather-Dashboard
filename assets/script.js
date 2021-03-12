@@ -12,6 +12,7 @@ $(document).ready(function () {
     console.log(cityEntry);
     $("#cityInput").val("");
     getCurrentCity(cityEntry);
+    console.log(getCurrentCity);
   });
 
   // write function to get current location from cities array
@@ -54,6 +55,12 @@ $(document).ready(function () {
       city +
       "&appid=" +
       apiKey;
+    console.log(forecastQueryURL);
+
+    // "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/forecast?q=" +
+    // city +
+    // "&appid=" +
+    // apiKey;
 
     //  5 day forecast ajax call
     $.ajax({
@@ -62,38 +69,35 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(response);
       console.log(forecastQueryURL);
-      var forecastResults = response.list;
-      console.log(response.list);
       //empty the div that contains forecast data
-      $("#weatherForecast").empty();
+      // $("#weatherForecast").empty();
 
-      for (var i = 0; i < forecastResults.length; i += 8) {
+      for (var i = 0; i < response.list.length; i += 8) {
         //create div
-        var forecastResultsDiv = $("<div>");
-        forecastResultsDiv.append(forecastResults);
-        $("weatherForecast").html(forecastResultsDiv);
+        var forecastResults = response.list;
+        console.log(forecastResults);
       }
 
-      //console.log(latitude);
-      var latitude = response.coord.lon;
-      console.log(rresponse.coord.lon);
-      var longitude = response.coord.lat;
-      var weatherQueryURL =
-        "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=" +
-        latitude +
-        "&lon=" +
-        longitude;
+      //   //console.log(latitude);
+      //   var latitude = response.coord.lon;
+      //   console.log(rresponse.coord.lon);
+      //   var longitude = response.coord.lat;
+      //   var weatherQueryURL =
+      //     "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=" +
+      //     latitude +
+      //     "&lon=" +
+      //     longitude;
 
-      $.ajax({
-        url: weatherQueryURL,
-        method: "GET",
-      }).then(function (response) {
-        console.log(response);
-        $("#currentUV").empty();
-        var UV = $("<p>").text("UV Index: " + response.value);
-        console.log(UV);
-        $("#currentUV").html(UV);
-      });
+      //   $.ajax({
+      //     url: weatherQueryURL,
+      //     method: "GET",
+      //   }).then(function (response) {
+      //     console.log(response);
+      //     $("#currentUV").empty();
+      //     var UV = $("<p>").text("UV Index: " + response.value);
+      //     console.log(UV);
+      //     $("#currentUV").html(UV);
+      //   });
     });
   }
 
