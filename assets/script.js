@@ -71,12 +71,8 @@ $(document).ready(function () {
       console.log(forecastQueryURL);
       //empty the div that contains forecast data
       // $("#weatherForecast").empty();
-
-      for (var i = 0; i < response.list.length; i += 8) {
-        //create div
-        var forecastResults = response.list;
-        console.log(forecastResults);
-      }
+      var forecastOne = moment(response.list[0].dt_txt.format("ddd, MMM D"));
+      console.log(forecastOne);
 
       //   //console.log(latitude);
       //   var latitude = response.coord.lon;
